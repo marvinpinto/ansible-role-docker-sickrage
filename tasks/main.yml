@@ -1,2 +1,19 @@
 ---
-# tasks file for docker-sickrage
+- name: 'Start the sickrage docker container'
+  docker:
+    image: "linuxserver/sickrage"
+    name: "{{ docker_sickrage_container_name }}"
+    env:
+      PUID: '0'
+      PGID: '0'
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '{{ docker_sickrage_mounted_directory }}/config:/config'
+      - '{{ docker_sickrage_mounted_directory }}/raw_tv_downloads:/downloads'
+      - '{{ docker_sickrage_mounted_directory }}/tv:/tv'
+    ports: '{{ docker_sickrage_exposed_port }}:8081'
+    state: 'started'
+    restart_policy: 'always'
+    log_driver: 'syslog'
+    log_opt:
+      syslog-tag: "{{ docker_sickrage_container_name }}"
