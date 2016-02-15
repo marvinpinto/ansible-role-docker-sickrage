@@ -1,2 +1,16 @@
 ---
-# defaults file for docker-sickrage
+# Sickrage host port
+docker_sickrage_exposed_port: '8081'
+
+# Docker container name
+docker_sickrage_container_name: 'sickrage'
+
+# Directory that will be used as the root of all sickrage-related configuration
+# & data. Note that these sub-directories *will* be automatically created if
+# they don't already exist.
+#
+# Assuming 'docker_sickrage_mounted_directory' is set to: /tmp/sickrage_mount
+# /tmp/sickrage_mount/config
+# /tmp/sickrage_mount/raw_tv_downloads
+# /tmp/sickrage_mount/tv
+docker_sickrage_mounted_directory: '/tmp/sickrage_mount'
